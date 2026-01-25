@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignVerify — AI Signature Verification</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f9fafb;
+            color: #111827;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        nav h1 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 90px 80px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-left h2 {
+            font-size: 46px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-left p {
+            font-size: 18px;
+            color: #4b5563;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #2563eb;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: #1e40af;
+        }
+
+        /* RIGHT SIDE PERFORMANCE BOX */
+        .hero-box {
+            text-align: center;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 42px;
+            border-radius: 22px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-box::after {
+            content: "";
+            position: absolute;
+            top: -60%;
+            right: -60%;
+            width: 220%;
+            height: 220%;
+            background: radial-gradient(circle, rgba(255,255,255,0.14), transparent 60%);
+        }
+
+        .hero-box h3 {
+            font-size: 26px;
+            margin-bottom: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat {
+            margin-bottom: 22px;
+        }
+
+        .stat h4 {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .stat span {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        /* MAIN ACCURACY */
+.stat-main {
+    margin-bottom: 28px;
+}
+
+.stat-main h4 {
+    font-size: 48px;        /* BIG number */
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.stat-main span {
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* ROW FOR FAR & FRR */
+.stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* SMALL STATS */
+.stat-small h4 {
+    font-size: 28px;        /* smaller than accuracy */
+    font-weight: 600;
+}
+
+.stat-small span {
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+
+        /* SECTION */
+        .section {
+            padding: 80px;
+        }
+
+        .section h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        /* WHY SYSTEM */
+        .why-grid {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .why-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .why-card i {
+            font-size: 26px;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .why-card h4 {
+            margin-bottom: 10px;
+        }
+
+        .why-card p {
+            font-size: 15px;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        /* APPLICATIONS */
+        .use-grid {
+            margin-top: 35px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .use-item {
+            background: #f1f5f9;
+            padding: 25px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .use-item i {
+            display: block;
+            font-size: 24px;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        /* ABOUT + WORKFLOW */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .about-highlight {
+            background: #f1f5f9;
+            padding: 30px;
+            border-radius: 16px;
+        }
+
+        .workflow {
+            margin-top: 40px;
+            max-width: 900px;
+        }
+
+        .step {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: #2563eb;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 30px;
+            text-align: center;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            nav { padding: 20px 30px; }
+            .hero { grid-template-columns: 1fr; padding: 70px 30px; text-align: center; }
+            .why-grid, .use-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+            .section { padding: 60px 30px; }
+        }
+        .step h4 {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.step p {
+    color: #4b5563;
+    line-height: 1.6;
+    max-width: 700px;
+}
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <h1><i class="fa-solid fa-signature"></i> SignVerify</h1>
+    <div>
+        <a href="/">Home</a>
+        <a href="/verify">Verify</a>
+        <a href="/history">History</a>
+        <a href="/help">Help</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-left">
+        <h2>AI-Based Signature<br>Verification System</h2>
+        <p>
+            A secure and intelligent authentication system that verifies
+            handwritten signatures using Machine Learning techniques.
+        </p>
+        <a href="/verify" class="btn">Start Verification</a>
+    </div>
+
+  <div class="hero-box">
+    <h3><i class="fa-solid fa-gauge-high"></i> System Performance</h3>
+
+    <!-- MAIN ACCURACY -->
+    <div class="stat-main">
+        <h4>91.27%</h4>
+        <span>Overall Accuracy</span>
+    </div>
+
+    <!-- SUB STATS -->
+    <div class="stat-row">
+        <div class="stat-small">
+            <h4>6.18%</h4>
+            <span>FAR</span>
+        </div>
+        <div class="stat-small">
+            <h4>11.27%</h4>
+            <span>FRR</span>
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="section">
+
+    <h3>Why This System?</h3>
+    <div class="why-grid">
+        <div class="why-card"><i class="fa-solid fa-user-shield"></i><h4>Forgery Prevention</h4><p>Automatically detects forged signatures.</p></div>
+        <div class="why-card"><i class="fa-solid fa-brain"></i><h4>ML Powered</h4><p>Uses similarity analysis and ML classification.</p></div>
+        <div class="why-card"><i class="fa-solid fa-scale-balanced"></i><h4>Balanced Accuracy</h4><p>Low FAR with high verification reliability.</p></div>
+    </div>
+</section>
+
+<section class="section">
+    <h3>Potential Applications</h3>
+    <div class="use-grid">
+        <div class="use-item"><i class="fa-solid fa-graduation-cap"></i>Exams</div>
+        <div class="use-item"><i class="fa-solid fa-building-columns"></i>Banking</div>
+        <div class="use-item"><i class="fa-solid fa-clipboard-check"></i>Attendance</div>
+        <div class="use-item"><i class="fa-solid fa-user-shield"></i>Fraud Detection</div>
+    </div>
+</section>
+
+<section class="section">
+    <h3>How the System Works</h3>
+
+    <div class="workflow">
+
+        <!-- STEP 1 -->
+        <div class="step">
+            <div class="step-icon">
+                <i class="fa-solid fa-user-pen"></i>
+            </div>
+            <div>
+                <h4>Signature Enrollment</h4>
+                <p>
+                    Multiple genuine signature samples are collected for each student
+                    during enrollment. This helps the system learn individual writing
+                    patterns and natural variations in handwriting.
+                </p>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step">
+            <div class="step-icon">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+            </div>
+            <div>
+                <h4>Feature Extraction</h4>
+                <p>
+                    The uploaded signature image is preprocessed using image processing
+                    techniques such as binarization and normalization. Key structural
+                    and similarity features are then extracted for comparison.
+                </p>
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step">
+            <div class="step-icon">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+            <div>
+                <h4>ML-Based Verification</h4>
+                <p>
+                    Extracted features are analyzed by a trained machine learning model.
+                    Based on similarity scores and security thresholds, the system
+                    classifies the signature as genuine or forged with confidence.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<footer>
+    © 2026 SignVerify • Final Year Major Project
+</footer>
+
+</body>
+</html>

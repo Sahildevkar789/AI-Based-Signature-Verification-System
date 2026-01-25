@@ -1,0 +1,132 @@
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(120deg, #1e3c72, #2a5298);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: white;
+    width: 420px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 600;
+    margin-top: 10px;
+    display: block;
+}
+
+select, input[type=file], button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #1e3c72;
+    color: white;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background: #16315c;
+}
+
+.result {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.genuine {
+    color: green;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.forged {
+    color: red;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.progress {
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 18px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #2a5298;
+    width: 0%;
+}
+.hero {
+    padding: 90px 40px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    animation: fadeUp 0.8s ease-out;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero-content h2 {
+    font-size: 46px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: #4b5563;
+    margin-bottom: 35px;
+}
+
+.hero-icons {
+    margin-bottom: 35px;
+}
+
+.hero-icons i {
+    font-size: 38px;
+    margin: 0 18px;
+    color: #2563eb;
+}
+
+/* Subtle animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero-content h2 {
+        font-size: 34px;
+    }
+}

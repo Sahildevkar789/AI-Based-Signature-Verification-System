@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Signature — SignVerify</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f9fafb;
+            color: #111827;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        nav h1 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        /* PAGE */
+        .page {
+            min-height: calc(100vh - 90px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            width: 460px;
+            padding: 45px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        select, input[type=file] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        /* FILE PREVIEW */
+        .preview {
+            display: none;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .preview img {
+            max-width: 100%;
+            max-height: 160px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e40af;
+        }
+
+        /* LOADER */
+        .loader {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        .spinner {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #c7d2fe;
+            border-top: 3px solid #2563eb;
+            border-radius: 50%;
+            margin: 10px auto;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            nav { padding: 20px 30px; }
+            .card { width: 100%; padding: 35px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <h1><i class="fa-solid fa-signature"></i> SignVerify</h1>
+    <div>
+        <a href="/">Home</a>
+        <a href="/verify">Verify</a>
+        <a href="/history">History</a>
+        <a href="/help">Help</a>
+    </div>
+</nav>
+
+<!-- VERIFY FORM -->
+<div class="page">
+    <div class="card">
+        <h2>Verify Signature</h2>
+        <p>Select a student and upload a signature image for verification.</p>
+
+        <form action="/verify" method="post" enctype="multipart/form-data"
+              onsubmit="showLoader()">
+
+            <label>Student ID</label>
+            <select name="student" required>
+                {% for s in students %}
+                <option value="{{ s }}">{{ s }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Upload Signature</label>
+            <input type="file" name="signature" accept="image/*"
+                   onchange="previewImage(event)" required>
+
+            <div class="preview" id="preview">
+                <img id="previewImg">
+            </div>
+
+            <button type="submit">
+                <i class="fa-solid fa-shield-check"></i> Verify Signature
+            </button>
+
+            <div class="loader" id="loader">
+                <div class="spinner"></div>
+                Verifying signature using AI model...
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    © 2026 SignVerify • AI Signature Verification
+</footer>
+
+<script>
+function previewImage(event) {
+    const img = document.getElementById("previewImg");
+    const box = document.getElementById("preview");
+    img.src = URL.createObjectURL(event.target.files[0]);
+    box.style.display = "block";
+}
+
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page">
+    <div class="card wide help-card">
+
+        <h2>Help & Support</h2>
+        <p class="subtitle">
+            Common questions about the AI-based Signature Verification System
+        </p>
+
+        <div class="faq-accordion">
+
+            <!-- FAQ ITEM -->
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What is a genuine signature?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    A genuine signature is written by the actual student and is
+                    collected during enrollment. These samples represent authentic
+                    handwriting patterns.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What is a forged signature?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    A forged signature is written by an unauthorized person attempting
+                    to imitate the original signature. The system is trained to detect
+                    such fraudulent attempts.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Which dataset is used?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    The system uses the <b>CEDAR Handwritten Signature Dataset</b>,
+                    a standard benchmark dataset widely used in academic research.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is the system 100% accurate?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    No biometric system can achieve 100% accuracy. This system achieves
+                    around <b>91% accuracy</b> with a low False Acceptance Rate (FAR).
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How does the system verify signatures?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    The uploaded signature is preprocessed, compared with enrolled
+                    samples using feature matching, and classified by a trained
+                    machine learning model.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="help-cta">
+            <a href="/verify" class="btn">Start Verification</a>
+        </div>
+
+    </div>
+</div>
+<!-- ABOUT DEVELOPER -->
+<div class="dev-section">
+    <div class="dev-card">
+
+        <div class="dev-info">
+            <h3>About the Developer</h3>
+            <p>
+                This system was developed as a Final Year  Project
+                focusing on Machine Learning–based biometric authentication.
+                The goal is to provide a secure, reliable, and scalable
+                signature verification solution.
+            </p>
+
+            <ul>
+                <li><i class="fa-solid fa-user"></i>Sahil Santosh Devkar</li>
+                <li><i class="fa-solid fa-graduation-cap"></i> Btech Computer Engineering</li>
+                <li><i class="fa-solid fa-shield-halved"></i> Interest: AI/ML & Cybersecurity</li>
+            </ul>
+        </div>
+
+        <div class="dev-contact">
+            <h4>Contact Support</h4>
+            <p>If you face issues or have queries, feel free to reach out.</p>
+
+            <a href="mailto:Sahildevkar789@gmail.com" class="contact-btn">
+                <i class="fa-solid fa-envelope"></i> Email Support
+            </a>
+
+            <a href="https://www.linkedin.com" target="_blank" class="contact-btn outline">
+                <i class="fa-brands fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+const questions = document.querySelectorAll(".faq-question");
+
+questions.forEach(q => {
+    q.addEventListener("click", () => {
+        const item = q.parentElement;
+        item.classList.toggle("active");
+    });
+});
+</script>
+
+{% endblock %}

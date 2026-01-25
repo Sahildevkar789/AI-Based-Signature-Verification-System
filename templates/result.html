@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verification Result — SignVerify</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f9fafb;
+            color: #111827;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        nav h1 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        /* PAGE */
+        .page {
+            min-height: calc(100vh - 90px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        /* RESULT CARD */
+        .result-card {
+            background: white;
+            width: 460px;
+            padding: 45px;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.06);
+        }
+
+        .student {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .student span {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .result-icon {
+            font-size: 56px;
+            margin: 25px 0 10px;
+        }
+
+        .genuine {
+            color: #16a34a;
+        }
+
+        .forged {
+            color: #dc2626;
+        }
+
+        .result-text {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* METRICS */
+        .metrics {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .metric {
+            background: #f9fafb;
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .metric h4 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .metric span {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        /* BUTTON */
+        .btn {
+            margin-top: 35px;
+            display: inline-block;
+            padding: 14px 28px;
+            background: #2563eb;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: #1e40af;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            nav { padding: 20px 30px; }
+            .result-card { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <h1><i class="fa-solid fa-signature"></i> SignVerify</h1>
+    <div>
+        <a href="/">Home</a>
+        <a href="/verify">Verify</a>
+        <a href="/history">History</a>
+        <a href="/help">Help</a>
+    </div>
+</nav>
+
+<!-- RESULT -->
+<div class="page">
+    <div class="result-card">
+
+        <div class="student">
+            Verification Result for <span>{{ student }}</span>
+        </div>
+
+        {% if result == "GENUINE" %}
+            <div class="result-icon genuine">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="result-text genuine">GENUINE SIGNATURE</div>
+        {% else %}
+            <div class="result-icon forged">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <div class="result-text forged">FORGED SIGNATURE</div>
+        {% endif %}
+
+        <div class="metrics">
+            <div class="metric">
+                <h4>{{ confidence }}%</h4>
+                <span>Confidence Score</span>
+            </div>
+            <div class="metric">
+                <h4>{{ score }}</h4>
+                <span>Similarity Score</span>
+            </div>
+        </div>
+
+        <a href="/verify" class="btn">
+            <i class="fa-solid fa-rotate"></i> Verify Another
+        </a>
+
+    </div>
+</div>
+
+<footer>
+    © 2026 SignVerify • AI Signature Verification
+</footer>
+
+</body>
+</html>

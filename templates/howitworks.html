@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page">
+    <div class="card wide">
+        <h2>How the System Works</h2>
+        <p class="subtitle">
+            A step-by-step overview of the AI-based signature verification pipeline
+        </p>
+
+        <div class="process">
+            <!-- STEP 1 -->
+            <div class="process-step">
+                <div class="icon blue">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <div class="text">
+                    <h4>Signature Enrollment</h4>
+                    <p>
+                        Multiple genuine signature samples are collected for each
+                        student to learn natural variations in handwriting.
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="process-step">
+                <div class="icon purple">
+                    <i class="fa-solid fa-image"></i>
+                </div>
+                <div class="text">
+                    <h4>Image Preprocessing</h4>
+                    <p>
+                        Uploaded signatures are converted to grayscale, binarized,
+                        and normalized for consistent feature extraction.
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="process-step">
+                <div class="icon green">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                </div>
+                <div class="text">
+                    <h4>Feature Extraction</h4>
+                    <p>
+                        Structural and similarity-based features are extracted using
+                        keypoint detection and matching techniques.
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="process-step">
+                <div class="icon orange">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div class="text">
+                    <h4>ML-Based Classification</h4>
+                    <p>
+                        A trained machine learning model classifies the signature
+                        as genuine or forged based on similarity scores.
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="process-step">
+                <div class="icon red">
+                    <i class="fa-solid fa-shield-check"></i>
+                </div>
+                <div class="text">
+                    <h4>Final Verification</h4>
+                    <p>
+                        The system outputs the verification result along with a
+                        confidence score for transparency.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
