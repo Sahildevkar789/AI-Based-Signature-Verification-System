@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="card wide">
+        <h2>Student Management</h2>
+        <p class="subtitle">Add new students and upload their genuine signature references (Maximum 5 images recommended).</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div style="background: #e1f5fe; color: #01579b; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="/manage" method="POST" enctype="multipart/form-data" class="card" style="border-style: dashed; border-color: #2563eb; background: #f0f7ff;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: flex-end;">
+                <div>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Student Name / ID</label>
+                    <input type="text" name="student_name" required placeholder="e.g. John Doe or student_005" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px;">
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Genuine Signature Files (Multiple)</label>
+                    <input type="file" name="genuine_signatures" multiple required accept="image/*" style="width: 100%;">
+                </div>
+            </div>
+            <button type="submit" class="btn" style="margin-top: 20px; width: 100%;">Add Student & Signatures</button>
+        </form>
+
+        <h3 style="margin-top: 40px; margin-bottom: 20px;">Existing Students</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;">
+            {% for s in students %}
+                <div style="background: white; border: 1px solid #e5e7eb; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-user-graduate" style="color: #6b7280;"></i>
+                    <span style="font-weight: 500;">{{ s }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

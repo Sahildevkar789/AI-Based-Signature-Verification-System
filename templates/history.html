@@ -1,207 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Verification History — SignVerify</title>
-
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <style>
-        * {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #f9fafb;
-            color: #111827;
-        }
-
-        /* NAVBAR */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 80px;
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        nav h1 {
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        nav a {
-            margin-left: 25px;
-            text-decoration: none;
-            color: #374151;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: #2563eb;
-        }
-
-        /* PAGE */
-        .page {
-            padding: 80px;
-            min-height: calc(100vh - 90px);
-        }
-
-        .card {
-            background: white;
-            border-radius: 18px;
-            border: 1px solid #e5e7eb;
-            padding: 40px;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .card h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: #6b7280;
-            margin-bottom: 30px;
-        }
-
-        /* TABLE */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th, td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid #e5e7eb;
-            font-size: 15px;
-        }
-
-        th {
-            background: #f1f5f9;
-            font-weight: 600;
-        }
-
-        .genuine {
-            color: #16a34a;
-            font-weight: 600;
-        }
-
-        .forged {
-            color: #dc2626;
-            font-weight: 600;
-        }
-
-        /* BUTTONS */
-        .actions {
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            background: #2563eb;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .btn:hover {
-            background: #1e40af;
-        }
-
-        .btn.red {
-            background: #dc2626;
-        }
-
-        .btn.red:hover {
-            background: #b91c1c;
-        }
-
-        /* FOOTER */
-        footer {
-            padding: 25px;
-            text-align: center;
-            background: white;
-            border-top: 1px solid #e5e7eb;
-            color: #6b7280;
-        }
-
-        /* MOBILE */
-        @media (max-width: 900px) {
-            nav { padding: 20px 30px; }
-            .page { padding: 60px 30px; }
-            table { font-size: 14px; }
-        }
-    </style>
-</head>
-<body>
-
-<!-- NAVBAR -->
-<nav>
-    <h1><i class="fa-solid fa-signature"></i> SignVerify</h1>
-    <div>
-        <a href="/">Home</a>
-        <a href="/verify">Verify</a>
-        <a href="/history">History</a>
-        <a href="/help">Help</a>
-    </div>
-</nav>
-
-<!-- PAGE -->
-<div class="page">
-    <div class="card">
-        <h2>Verification History</h2>
-        <p>Recent signature verification attempts recorded by the system</p>
-
-        {% if history and history|length > 0 %}
-        <table>
-            <tr>
-                <th>Student</th>
-                <th>Result</th>
-                <th>Confidence</th>
-                <th>Time</th>
-            </tr>
-
-            {% for h in history %}
-            <tr>
-                <td>{{ h.student }}</td>
-                <td class="{{ h.result|lower }}">{{ h.result }}</td>
-                <td>{{ h.confidence }}%</td>
-                <td>{{ h.time }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-
-        <div class="actions">
-            <a href="/verify" class="btn">New Verification</a>
-            <a href="/clear-history" class="btn red">Clear History</a>
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="card wide">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;"><i class="fa-solid fa-clock-rotate-left"></i> Verification History</h2>
+                <p class="subtitle" style="margin-bottom: 0;">Logs of your recent signature verification activities.</p>
+            </div>
+            {% if history %}
+            <a href="/clear-history" class="btn btn-outline" style="color: #ef4444; border-color: #ef4444;"><i class="fa-solid fa-trash-can"></i> Clear All History</a>
+            {% endif %}
         </div>
 
+        {% if not history %}
+            <div style="text-align: center; padding: 5rem 2rem; background: #f8fafc; border-radius: 1.5rem; border: 2px dashed var(--border);">
+                <i class="fa-solid fa-file-invoice" style="font-size: 3.5rem; color: var(--border); margin-bottom: 1.5rem;"></i>
+                <h3 style="color: var(--text-muted); font-size: 1.25rem; font-weight: 700;">No history found</h3>
+                <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 0.5rem;">Your verification records will appear here after your first run.</p>
+                <a href="/verify" class="btn" style="margin-top: 2.5rem;"><i class="fa-solid fa-play"></i> Start Now</a>
+            </div>
         {% else %}
-            <p>No verification history available.</p>
-            <a href="/verify" class="btn">Start Verification</a>
+            <div style="overflow-x: auto; border: 1px solid var(--border); border-radius: 1.25rem; background: white;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background: rgba(79, 70, 229, 0.04); border-bottom: 1px solid var(--border);">
+                            <th style="padding: 1.25rem 1.5rem; font-size: 0.85rem; font-weight: 700; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.05em;">Student ID</th>
+                            <th style="padding: 1.25rem 1.5rem; font-size: 0.85rem; font-weight: 700; color: var(--text-main); text-transform: uppercase;">Status</th>
+                            <th style="padding: 1.25rem 1.5rem; font-size: 0.85rem; font-weight: 700; color: var(--text-main); text-transform: uppercase;">Confidence</th>
+                            <th style="padding: 1.25rem 1.5rem; font-size: 0.85rem; font-weight: 700; color: var(--text-main); text-transform: uppercase;">Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for h in history %}
+                        <tr style="border-bottom: 1px solid var(--border); transition: background 0.2s;" onmouseover="this.style.background='rgba(79, 70, 229, 0.01)'" onmouseout="this.style.background='white'">
+                            <td style="padding: 1.25rem 1.5rem; font-weight: 600; color: var(--text-main);">{{ h.student|replace('_', ' ')|title }}</td>
+                            <td style="padding: 1.25rem 1.5rem;">
+                                {% if h.result == "GENUINE" %}
+                                    <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: #ecfdf5; color: #10b981; padding: 0.35rem 0.75rem; border-radius: 2rem; font-size: 0.75rem; font-weight: 700; border: 1px solid #d1fae5;">
+                                        <i class="fa-solid fa-circle-check"></i> Genuine
+                                    </span>
+                                {% else %}
+                                    <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: #fef2f2; color: #ef4444; padding: 0.35rem 0.75rem; border-radius: 2rem; font-size: 0.75rem; font-weight: 700; border: 1px solid #fee2e2;">
+                                        <i class="fa-solid fa-circle-xmark"></i> Forged
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td style="padding: 1.25rem 1.5rem; font-weight: 700; color: var(--text-main);">{{ h.confidence }}%</td>
+                            <td style="padding: 1.25rem 1.5rem; color: var(--text-muted); font-size: 0.85rem;">{{ h.time }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         {% endif %}
     </div>
 </div>
-
-<footer>
-    © 2026 SignVerify • AI Signature Verification
-</footer>
-
-</body>
-</html>
+{% endblock %}

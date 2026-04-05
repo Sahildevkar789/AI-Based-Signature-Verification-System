@@ -1,128 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container">
+    <div style="text-align: center; margin-bottom: 4rem;">
+        <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem;">Service Center & FAQ</h1>
+        <p class="subtitle">Quick answers and support for your verification needs</p>
+    </div>
 
-<div class="page">
-    <div class="card wide help-card">
-
-        <h2>Help & Support</h2>
-        <p class="subtitle">
-            Common questions about the AI-based Signature Verification System
-        </p>
-
-        <div class="faq-accordion">
-
-            <!-- FAQ ITEM -->
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>What is a genuine signature?</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">
-                    A genuine signature is written by the actual student and is
-                    collected during enrollment. These samples represent authentic
-                    handwriting patterns.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>What is a forged signature?</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">
-                    A forged signature is written by an unauthorized person attempting
-                    to imitate the original signature. The system is trained to detect
-                    such fraudulent attempts.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Which dataset is used?</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">
-                    The system uses the <b>CEDAR Handwritten Signature Dataset</b>,
-                    a standard benchmark dataset widely used in academic research.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Is the system 100% accurate?</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">
-                    No biometric system can achieve 100% accuracy. This system achieves
-                    around <b>91% accuracy</b> with a low False Acceptance Rate (FAR).
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>How does the system verify signatures?</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">
-                    The uploaded signature is preprocessed, compared with enrolled
-                    samples using feature matching, and classified by a trained
-                    machine learning model.
-                </div>
-            </div>
-
+    <!-- FAQ -->
+    <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
+        <div class="card" style="padding: 1.5rem; transition: transform 0.2s;">
+            <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem;"><i class="fa-solid fa-circle-question"></i> What format should the signature images be?</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Our system currently supports PNG, JPG, and JPEG. For optimal results, ensure the background is plain and the resolution is high enough to capture pen strokes.</p>
+        </div>
+        
+        <div class="card" style="padding: 1.5rem; transition: transform 0.2s;">
+            <h4 style="font-size: 1.15rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.75rem;"><i class="fa-solid fa-circle-question"></i> How accurate is the verification?</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">The AI model (SVM) was trained using the industry-standard CEDAR dataset and has a tested overall accuracy of 91.27%.</p>
         </div>
 
-        <div class="help-cta">
-            <a href="/verify" class="btn">Start Verification</a>
+        <div class="card" style="padding: 1.5rem; transition: transform 0.2s;">
+            <h4 style="font-size: 1.15rem; font-weight: 700; color: #10b981; margin-bottom: 0.75rem;"><i class="fa-solid fa-circle-question"></i> Why was my signature rejected as FORGED?</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Each signature has natural variations. If the similarity score is below the strict security threshold, it will be classified as forged to prevent unauthorized access. Try using a more consistent signature style.</p>
         </div>
+    </div>
 
+    <div style="text-align: center; margin-top: 5rem; max-width: 600px; margin: 5rem auto 0;">
+        <div class="card" style="background: rgba(79, 70, 229, 0.03); border: 2px dashed var(--primary); border-radius: 1.5rem;">
+            <i class="fa-solid fa-headset" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem;"></i>
+            <h3 style="font-weight: 800; margin-bottom: 1rem;">Need Personalized Assistance?</h3>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">If you are experiencing any technical issues, our support team is available 24/7 to assist you.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="mailto:support@signverify.ai" class="btn"><i class="fa-solid fa-envelope"></i> Contact Support</a>
+                <a href="#" class="btn btn-outline"><i class="fa-solid fa-book-open"></i> Full Documentation</a>
+            </div>
+        </div>
     </div>
 </div>
-<!-- ABOUT DEVELOPER -->
-<div class="dev-section">
-    <div class="dev-card">
-
-        <div class="dev-info">
-            <h3>About the Developer</h3>
-            <p>
-                This system was developed as a Final Year  Project
-                focusing on Machine Learning–based biometric authentication.
-                The goal is to provide a secure, reliable, and scalable
-                signature verification solution.
-            </p>
-
-            <ul>
-                <li><i class="fa-solid fa-user"></i>Sahil Santosh Devkar</li>
-                <li><i class="fa-solid fa-graduation-cap"></i> Btech Computer Engineering</li>
-                <li><i class="fa-solid fa-shield-halved"></i> Interest: AI/ML & Cybersecurity</li>
-            </ul>
-        </div>
-
-        <div class="dev-contact">
-            <h4>Contact Support</h4>
-            <p>If you face issues or have queries, feel free to reach out.</p>
-
-            <a href="mailto:Sahildevkar789@gmail.com" class="contact-btn">
-                <i class="fa-solid fa-envelope"></i> Email Support
-            </a>
-
-            <a href="https://www.linkedin.com" target="_blank" class="contact-btn outline">
-                <i class="fa-brands fa-linkedin"></i> LinkedIn
-            </a>
-        </div>
-
-    </div>
-</div>
-
-<script>
-const questions = document.querySelectorAll(".faq-question");
-
-questions.forEach(q => {
-    q.addEventListener("click", () => {
-        const item = q.parentElement;
-        item.classList.toggle("active");
-    });
-});
-</script>
-
 {% endblock %}

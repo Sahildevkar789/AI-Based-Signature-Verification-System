@@ -1,85 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container">
+    <div style="text-align: center; margin-bottom: 4rem;">
+        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">The Verification Lifecycle</h1>
+        <p class="subtitle">A three-stage process powered by computer vision and machine learning</p>
+    </div>
 
-<div class="page">
-    <div class="card wide">
-        <h2>How the System Works</h2>
-        <p class="subtitle">
-            A step-by-step overview of the AI-based signature verification pipeline
-        </p>
-
-        <div class="process">
-            <!-- STEP 1 -->
-            <div class="process-step">
-                <div class="icon blue">
-                    <i class="fa-solid fa-user-pen"></i>
-                </div>
-                <div class="text">
-                    <h4>Signature Enrollment</h4>
-                    <p>
-                        Multiple genuine signature samples are collected for each
-                        student to learn natural variations in handwriting.
-                    </p>
+    <div style="display: flex; flex-direction: column; gap: 3rem; max-width: 900px; margin: 0 auto;">
+        <!-- Step 1 -->
+        <div class="card" style="display: grid; grid-template-columns: 80px 1fr; gap: 2rem; align-items: start;">
+            <div style="width: 80px; height: 80px; background: rgba(79, 70, 229, 0.1); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; border: 4px solid white; box-shadow: var(--shadow);">
+                01
+            </div>
+            <div>
+                <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem;">Digital Enrollment</h3>
+                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">We collect multiple genuine signature samples during the student's initial enrollment. These samples are pre-processed and stored securely to create a robust character profile for comparison.</p>
+                <div style="margin-top: 1.5rem; background: #f8fafc; padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--border); display: flex; gap: 1rem; align-items: center;">
+                    <i class="fa-solid fa-camera-retro" style="color: var(--primary);"></i>
+                    <span style="font-size: 0.9rem; font-weight: 600; color: var(--secondary);">High-resolution scanning ensure micro-feature capture</span>
                 </div>
             </div>
+        </div>
 
-            <!-- STEP 2 -->
-            <div class="process-step">
-                <div class="icon purple">
-                    <i class="fa-solid fa-image"></i>
-                </div>
-                <div class="text">
-                    <h4>Image Preprocessing</h4>
-                    <p>
-                        Uploaded signatures are converted to grayscale, binarized,
-                        and normalized for consistent feature extraction.
-                    </p>
+        <!-- Step 2 -->
+        <div class="card" style="display: grid; grid-template-columns: 80px 1fr; gap: 2rem; align-items: start;">
+            <div style="width: 80px; height: 80px; background: rgba(124, 58, 237, 0.1); color: #7c3aed; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; border: 4px solid white; box-shadow: var(--shadow);">
+                02
+            </div>
+            <div>
+                <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem;">Deep Feature Extraction</h3>
+                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">When a signature is submitted for verification, our AI applies binarization and morphological operations. It then extracts ORB (Oriented FAST and Rotated BRIEF) keypoints to identify unique structural characteristics.</p>
+                <div style="margin-top: 1.5rem; background: #fdf4ff; padding: 1rem; border-radius: 0.75rem; border: 1px solid #f0abfc; display: flex; gap: 1rem; align-items: center;">
+                    <i class="fa-solid fa-brain" style="color: #c026d3;"></i>
+                    <span style="font-size: 0.9rem; font-weight: 600; color: #a21caf;">ORB Algorithms detect keypoints invariant to rotation or scale</span>
                 </div>
             </div>
+        </div>
 
-            <!-- STEP 3 -->
-            <div class="process-step">
-                <div class="icon green">
-                    <i class="fa-solid fa-magnifying-glass-chart"></i>
-                </div>
-                <div class="text">
-                    <h4>Feature Extraction</h4>
-                    <p>
-                        Structural and similarity-based features are extracted using
-                        keypoint detection and matching techniques.
-                    </p>
-                </div>
+        <!-- Step 3 -->
+        <div class="card" style="display: grid; grid-template-columns: 80px 1fr; gap: 2rem; align-items: start;">
+            <div style="width: 80px; height: 80px; background: rgba(16, 185, 129, 0.1); color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; border: 4px solid white; box-shadow: var(--shadow);">
+                03
             </div>
-
-            <!-- STEP 4 -->
-            <div class="process-step">
-                <div class="icon orange">
-                    <i class="fa-solid fa-brain"></i>
-                </div>
-                <div class="text">
-                    <h4>ML-Based Classification</h4>
-                    <p>
-                        A trained machine learning model classifies the signature
-                        as genuine or forged based on similarity scores.
-                    </p>
-                </div>
-            </div>
-
-            <!-- STEP 5 -->
-            <div class="process-step">
-                <div class="icon red">
-                    <i class="fa-solid fa-shield-check"></i>
-                </div>
-                <div class="text">
-                    <h4>Final Verification</h4>
-                    <p>
-                        The system outputs the verification result along with a
-                        confidence score for transparency.
-                    </p>
+            <div>
+                <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem;">Consensus Classification</h3>
+                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">The similarity between the test signature and all reference genuine samples is calculated. This consensus score is then passed to a trained SVM (Support Vector Machine) model to classify the signature as GENUINE or FORGED.</p>
+                <div style="margin-top: 1.5rem; background: #eff6ff; padding: 1rem; border-radius: 0.75rem; border: 1px solid #93c5fd; display: flex; gap: 1rem; align-items: center;">
+                    <i class="fa-solid fa-chart-simple" style="color: var(--primary);"></i>
+                    <span style="font-size: 0.9rem; font-weight: 600; color: #1d4ed8;">Threshold-based logic ensures high reliability in fraud detection</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

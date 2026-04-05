@@ -9,4 +9,8 @@ venv/
 
 # Large / private data
 dataset/
+instance/
 model/
+*.h5
+*.pkl
+*.db
